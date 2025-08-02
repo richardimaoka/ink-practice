@@ -1,18 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { render, Text } from "ink";
+import { Box, render, Text } from "ink";
+import { google } from "@ai-sdk/google";
+import { streamText } from "ai";
 
 const App = () => {
-  const [time, setTime] = useState(new Date());
-
+  const [response, setResponse] = useState("");
+  const prompt = "箱根のおすすめの観光地を教えてください。";
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
+    const generateResponse = async () => {
+      // streamText 関数はテキスト生成をストリーミングで返す
+      const res = streamText({
+        // モデルを指定する
+        // ここでは Google Gemini の最新モデルを指定
+        model: google("gemini-2.5-pro-exp-03-25"),
+        // 一旦プロンプトのメッセージを固定で指定する
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      });
 
-    return () => clearInterval(interval);
+      // ストリーミングされたテキストをチャンクごとに受け取る
+      for await (const chunk of res.textStream) {
+        setResponse((prev) => prev + chunk);
+      }
+    };
+    generateResponse();
   }, []);
 
-  return <Text color="green">{time.toLocaleTimeString()}</Text>;
+  return (
+    <Box flexDirection="column">
+      <Text color="green">user: {prompt}</Text>
+      <Text color="blue">assistant:</Text>
+      <Text color="white">{response}</Text>
+    </Box>
+  );
 };
-
 render(<App />);
