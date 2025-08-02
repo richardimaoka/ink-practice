@@ -17,6 +17,7 @@
     "@ai-sdk/google": "^2.0.0",
     "ai": "^5.0.0",
     "ink": "^6.1.0",
+    "ink-spinner": "^5.0.0",
     "react": "^19.1.1"
   },
   "devDependencies": {
