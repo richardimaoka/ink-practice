@@ -2,7 +2,7 @@
   "name": "ink-practice",
   "version": "1.0.0",
   "description": "",
-   "type": "module",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,5 +10,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.12.1"
+  "packageManager": "pnpm@10.12.1",
+  "dependencies": {
+    "ink": "^6.1.0",
+    "react": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.9",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  }
 }
