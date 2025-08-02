@@ -12,7 +12,7 @@ const App = () => {
       const res = streamText({
         // モデルを指定する
         // ここでは Google Gemini の最新モデルを指定
-        model: google("gemini-2.5-pro-exp-03-25"),
+        model: google("gemini-2.5-pro"),
         // 一旦プロンプトのメッセージを固定で指定する
         messages: [
           {
